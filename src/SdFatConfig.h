@@ -73,6 +73,7 @@
  *
  * 1 for FAT16/FAT32, 2 for exFAT, 3 for FAT16/FAT32 and exFAT.
  */
+#if !defined(SDFAT_FILE_TYPE)
 #if defined(__AVR__) && FLASHEND < 0X8000
 // 32K AVR boards.
 #define SDFAT_FILE_TYPE 1
@@ -83,6 +84,7 @@
 // All other boards.
 #define SDFAT_FILE_TYPE 1
 #endif  // defined(__AVR__) && FLASHEND < 0X8000
+#endif // !defined(SDFAT_FILE_TYPE)
 //------------------------------------------------------------------------------
 /**
  * Set ENABLE_DEDICATED_SPI non-zero to enable dedicated use of the SPI bus.
@@ -209,7 +211,9 @@ typedef uint8_t SdCsPin_t;
  * Set USE_SD_CRC to 2 to used a larger table driven CRC-CCITT function.  This
  * function is faster for AVR but may be slower for ARM and other processors.
  */
+#if !defined(USE_SD_CRC)
 #define USE_SD_CRC 0
+#endif // !defined(USE_SD_CRC)
 //------------------------------------------------------------------------------
 /** If the symbol USE_FCNTL_H is nonzero, open flags for access modes O_RDONLY,
  * O_WRONLY, O_RDWR and the open modifiers O_APPEND, O_CREAT, O_EXCL, O_SYNC
