@@ -138,7 +138,7 @@ class SdSpiConfig {
   /** Options */
   const uint8_t options = 0;
   /** Max SCK frequency */
-  const uint32_t maxSck = SD_SCK_MHZ(50);
+  const uint32_t maxSck = (1000L * SD_MAX_RATE_KHZ);
   /** SPI port */
   SpiPort_t* spiPort = nullptr;
 };
