@@ -94,13 +94,15 @@
  *
  * Enabling dedicated SPI will cost some extra flash and RAM.
  */
-#if defined(__AVR__) && FLASHEND < 0X8000
-// 32K AVR boards.
-#define ENABLE_DEDICATED_SPI 1
-#else  // defined(__AVR__) && FLASHEND < 0X8000
-// All other boards.
-#define ENABLE_DEDICATED_SPI 1
-#endif  // defined(__AVR__) && FLASHEND < 0X8000
+#ifndef ENABLE_DEDICATED_SPI
+  #if defined(__AVR__) && FLASHEND < 0X8000
+  // 32K AVR boards.
+  #define ENABLE_DEDICATED_SPI 1
+  #else  // defined(__AVR__) && FLASHEND < 0X8000
+  // All other boards.
+  #define ENABLE_DEDICATED_SPI 1
+  #endif  // defined(__AVR__) && FLASHEND < 0X8000
+#endif // ENABLE_DEDICATED_SPI
 //------------------------------------------------------------------------------
 /**
  * If the symbol SPI_DRIVER_SELECT is:
