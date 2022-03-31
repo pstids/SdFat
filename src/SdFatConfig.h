@@ -149,7 +149,13 @@ typedef uint8_t SdCsPin_t;
   #define SD_MAX_INIT_RATE_KHZ 400
 #endif // SD_MAX_INIT_RATE_KHZ
 
-#ifndef SD_MAX_RATE_KHZ
+#define STR_HELPER(x) #x
+#define STR(x) STR_HELPER(x)
+
+#ifdef SD_MAX_RATE_KHZ
+  // Emit message
+  #pragma message "Setting SD Max rate to " STR(SD_MAX_RATE_KHZ) "kHz"
+#else
   #define SD_MAX_RATE_KHZ 50000
 #endif // SD_MAX_RATE_KHZ
 
